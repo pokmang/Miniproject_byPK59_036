@@ -1,5 +1,5 @@
-var express = require("express"),
-  router = express.Router();
+var express = require("express");
+var router = express.Router();
 
 let books = [
   { bookid: 001, bookname: "ฟิสิกส์ ม.1", group: "วิทยาศาสตร์" ,status: 0},
@@ -13,7 +13,7 @@ router
   // insert a new bear
   .post((req, res) => {
     var book = {};
-    book.id = books.length > 0 ? books[books.length - 1].id + 1 : 0;
+    book.bookid = books.length > 0 ? books[books.length - 1].bookid + 1 : 0;
     book.bookid = req.body.bookid;
     book.bookname = req.body.bookname;
     book.group = req.body.group;
