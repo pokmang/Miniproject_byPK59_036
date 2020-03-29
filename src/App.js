@@ -1,7 +1,7 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import LoginFrom from './component/formlogin';
+// import LoginFrom from './component/formlogin';
+import RegisterForm from './component/formregister';
 
 
 
@@ -9,7 +9,8 @@ function App() {
   return (
     <div className="App">
       <div >
-        <LoginFrom />
+        {/* <LoginFrom /> */}
+        <RegisterForm/>
       </div>
       
     </div>
