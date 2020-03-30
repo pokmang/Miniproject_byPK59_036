@@ -19,6 +19,7 @@ const RegisterForm = () => {
         <div >
             <h1>ห้องสมุด</h1>
             <h2>โรงเรียนดรุณศาสน์วิทยา</h2>
+            <h3>ลงทะเบียน</h3>
             <td>Student ID</td>
             <input className='inpt' type="text" onChange={(e) => actions.set_userid(e.target.value)} />
             <td>firstname</td>
