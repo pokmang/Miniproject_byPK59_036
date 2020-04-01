@@ -10,7 +10,7 @@ const RegisterForm = () => {
 
 
     //ดึงค่าจากbackend
-    const addStudent = async () => {
+    const Register = async () => {
         await axios.put(`http://localhost/users`, form)
         actions.add_user({ ...form })
     }
@@ -28,7 +28,7 @@ const RegisterForm = () => {
             <input className='inpt' type="text" onChange={(e) => actions.set_lastname(e.target.value)} />
             <td>password</td>
             <input className='inpt' type="password" onChange={(e) => actions.set_password(e.target.value)} />
-            <td><button className='btn' onClick={addStudent}>ADD</button></td>
+            <td><button className='btn' onClick={Register}>Register</button></td>
         </div>
     )
 }
