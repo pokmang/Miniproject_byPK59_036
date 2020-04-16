@@ -4,40 +4,53 @@ import React from 'react';
 import img from '../images/background.jpg' ;
 import face from '../images/fblogin.png'
 const Wrapper = styled.div`
+  
+  
     
-    // background-image: url(${img});
-    // min-height: 100%;
-    // min-width: 1024px;
-    // width: 100%;
-    // height: auto;
-    // position: fixed;
-    // top: 0;
-    // left: 0;
+    
+   
+  
 
+    .imgurl{
+        img{
+            width: 100vm;
+            height: 100vh;
+            position: relative
+        }
 
-// .back{
-//     background-image: url(${face});
-//     width: 100%;
-//     height: 400px;
-// }
+    }
+ .back{
+    background-image: url(${face});
+     width: 100%;
+    height: 400px;
+}
 `;
 
 
 const LoginFrom = () =>{
-    
+
+    const imgUrl = "https://drive.google.com/file/d/11DhzvOYzFQmJo6M0bF4ns6bFK3IQ_Vjo/view?usp=sharing"
+    const [formData, setFormData] = useState({
+        email: '',
+        password: ''
+    });
+
 
     return(
          <Wrapper>
+             <div className ="imgurl">
+                 <img src = {imgUrl} />
+             </div>
             <div>
                 <h1>ห้องสมุด</h1>
                 <h2>โรงเรียนดรุณศาสน์วิทยา</h2>
                 <div >
                     <label >Username</label>
-                    <input type="text"  placeholder="Username"></input>
+                    <input type="text"  placeholder="Username" onChange={e => setFormData({ ...formData, email: e.target.value })} ></input>
                 </div>
                 <div>
                     <label >Password</label>
-                    <input type="password" placeholder="Password"></input>
+                    <input type="password" placeholder="Password" onChange={e => setFormData({ ...formData, password: e.target.value })}></input>
                 </div>
                 <div >
                     <button >login</button>
