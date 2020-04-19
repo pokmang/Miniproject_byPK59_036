@@ -1,36 +1,85 @@
-import React from 'react'
-import { bindActionCreators } from 'redux'
-import { useDispatch, useSelector } from 'react-redux'
-import { allAction } from '../redux/store'
-import axios from 'axios'
-  
-const RegisterForm = () => {
-    const form = useSelector(state => state.form)
-    const actions = bindActionCreators(allAction, useDispatch())
+import React, { useState } from 'react'
+// import {Redirect} from "react-router-dom" ;
+import { useDispatch, useSelector } from 'react-redux' ;
 
 
-    //ดึงค่าจากbackend
-    const Register = async () => {
-        await axios.put(`http://localhost/users`, form)
-        actions.add_user({ ...form })
+import { createUser } from "../actions/register"
+import styled from "styled-components"
+
+const StyledWrapper = styled.div`
+
+    background: #006699 url('https://i.imgur.com/zceQljC.jpg') no-repeat;
+    -webkit-background-size: cover;
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    .box{
+        display: flex;
+        flex-direction: column;
+        align-item :center ;
+        justify-content: center;
+        width: 100vw;
+        height: 100vh;
+        padding-top: 200px;
+
+      }
+    .input{
+        margin-left: 700px;
+        padding-left: 5px;
+        width: 200px;
+        height: 30px;
+        border-radius: 10px;
+        margin-top: 10px;
     }
 
+`
+
+const RegisterForm = () => {
+
+  
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    // const [routeRedirect , setRedirect ] = useState("tr");
+    const dispatch = useDispatch();
+    const createUserAction = (email ,password) => dispatch(createUser(email, password));
+
+
+    const register = async (e) =>{
+        e.preventDefault();
+      //  console.log("user created");
+        if(email !== "" && password !== ""){
+            await createUserAction(email, password);
+             // 
+        }else{
+            console.log("need to fill the credenttials");;
+            
+        }
+    }
+
+    // const redirectTo = routeRedirect;
+    // if(redirectTo){
+    //     return <Redirect to= "/" />
+    // }
+    
+
     return (
-        <div >
-            <h1>ห้องสมุด</h1>
-            <h2>โรงเรียนดรุณศาสน์วิทยา</h2>
-            <h3>ลงทะเบียน</h3>
-            <td>Student ID</td>
-            <input className='inpt' type="text" onChange={(e) => actions.set_userid(e.target.value)} />
-            <td>firstname</td>
-            <input className='inpt' type="text" onChange={(e) => actions.set_firstname(e.target.value)} />
-            <td>lastname</td>
-            <input className='inpt' type="text" onChange={(e) => actions.set_lastname(e.target.value)} />
-            <td>password</td>
-            <input className='inpt' type="password" onChange={(e) => actions.set_password(e.target.value)} />
-            <td><button className='btn' onClick={Register}>Register</button></td>
-        </div>
+        <React.Fragment>
+            <StyledWrapper>
+            <form onSubmit={register}>
+                <div className="box">
+                <h2>ห้องสมุดโรงเรียนดรุณศาสน์วิทยา</h2>
+                <h3>ลงทะเบียน</h3>
+                <label htmlFor="email">Email:</label>
+                <input className="input" type="email" name="email" onChange={(e) => setEmail(e.target.value)} />
+                <label htmlFor="Password">password:</label>
+                <input className="input" type="password" name="password" onChange={(e) => setPassword(e.target.value)} />
+                <input className="input" type="submit" value="create account"/>
+                </div>
+                
+            </form>
+            </StyledWrapper>
+        </React.Fragment>
     )
 }
 
-export default RegisterForm
+export default RegisterForm;

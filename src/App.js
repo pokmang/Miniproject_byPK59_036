@@ -1,19 +1,22 @@
 import React from 'react';
 import './App.css';
-import LoginFrom from './component/formlogin';
-// import RegisterForm from './component/formregister';
+import Nav from "./component/nav" ;
+import { Provider } from 'react-redux';
+import store from "./store/store" ;
+// import LoginFrom from './component/formlogin';
+import Routes from './routes';
 
 
 
 function App() {
   return (
-    <div className="App">
-      <div >
-        <LoginFrom />
-        {/* <RegisterForm/> */}
+    <Provider store ={store} >
+      <div className="App">
+     
+      <Routes/>
+      <Nav/>
       </div>
-      
-    </div>
+    </Provider>
   );
 }
 

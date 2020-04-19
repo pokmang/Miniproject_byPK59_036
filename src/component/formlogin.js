@@ -1,72 +1,95 @@
-import { useState } from 'react' ;
-import styled from 'styled-components' ;
-import React from 'react';
-import img from '../images/background.jpg' ;
-import face from '../images/fblogin.png'
-const Wrapper = styled.div`
-  
-  
-    
-    
-   
-  
+import React , {useState} from "react";
 
-    .imgurl{
-        img{
-            width: 100vm;
+import { useDispatch } from "react-redux";
+import { loginUser } from "../actions/login";
+import {Redirect} from "react-router-dom";
+import styled from "styled-components"
+
+const StyledWrapper = styled.div`
+
+    background: #006699 url('https://i.imgur.com/zceQljC.jpg') no-repeat;
+    -webkit-background-size: cover;
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    
+        .box{
+            display: flex;
+            flex-direction: column;
+            align-item :center ;
+            justify-content: center;
+            width: 100vw;
             height: 100vh;
-            position: relative
+            padding-top: 200px;
+
+          }
+        .input{
+            margin-left: 700px;
+            padding-left: 5px;
+            width: 200px;
+            height: 30px;
+            border-radius: 10px;
+
         }
 
+    
+
+`
+
+const LoginFrom = () => {
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [redirect,setRedirect] = useState(false);
+   
+    const dispatch = useDispatch();
+    const logInUserAction = (email, password) => dispatch(loginUser(email, password));
+
+
+    const login = async(e) => {
+        e.preventDefault()
+        
+        if(email !== "" && password !== ""){
+            console.log("login user in");
+            let user = await logInUserAction(email, password);
+            if (user){
+              setRedirect(true);
+            }
+            
+        }else{
+            console.log("need to fill the credentials")
+        }
+        
+    } 
+
+    const redirectTo = redirect;
+    if(redirect){
+        return <Redirect to="/" />  
     }
- .back{
-    background-image: url(${face});
-     width: 100%;
-    height: 400px;
-}
-`;
 
-
-const LoginFrom = () =>{
-
-    const imgUrl = "https://drive.google.com/file/d/11DhzvOYzFQmJo6M0bF4ns6bFK3IQ_Vjo/view?usp=sharing"
-    const [formData, setFormData] = useState({
-        email: '',
-        password: ''
-    });
 
 
     return(
-         <Wrapper>
-             <div className ="imgurl">
-                 <img src = {imgUrl} />
-             </div>
-            <div>
-                <h1>ห้องสมุด</h1>
-                <h2>โรงเรียนดรุณศาสน์วิทยา</h2>
-                <div >
-                    <label >Username</label>
-                    <input type="text"  placeholder="Username" onChange={e => setFormData({ ...formData, email: e.target.value })} ></input>
-                </div>
-                <div>
-                    <label >Password</label>
-                    <input type="password" placeholder="Password" onChange={e => setFormData({ ...formData, password: e.target.value })}></input>
-                </div>
-                <div >
-                    <button >login</button>
-                    <button >register</button>   
-                </div>
-                <img src="https://praew.com/app/uploads/2018/04/facebook-sign-in-button-600x225.jpg" width="130" height="80"></img>
-                
-            
-            </div>
-         </Wrapper>
+        <React.Fragment>
+            <StyledWrapper>
+            <form  onSubmit={login}>
 
+                <div className="box">
+                <h3 className ="text-tile">ระบบจัดการห้องสมุด</h3>
+                <label for="uname"><b>Email</b></label>
+                <input  className="input" type="email" name="email" placeholder="Enter Email" onChange={(e) => setEmail(e.target.value)} />
+                <br/>
+                <label for="psw"><b>Password</b></label>
+                <input className="input" type="password" name="password" placeholder="Enter Password" onChange={(e) => setPassword(e.target.value)} />
+                <br/>
+                <input className="input" type="submit" value="Login"/>
+                </div>
+            </form>
+            </StyledWrapper>
+        </React.Fragment>
     )
 
-
-
-
+   
 
 
 
