@@ -24,7 +24,7 @@ const StyledWrapper = styled.div`
 
       }
     .input{
-        margin-left: 700px;
+        margin-left: 600px;
         padding-left: 5px;
         width: 200px;
         height: 30px;
@@ -36,19 +36,21 @@ const StyledWrapper = styled.div`
 
 const RegisterForm = () => {
 
-  
+    const [firstname, setfirstName] = useState("");
+    const [lastname, setlastName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    
     // const [routeRedirect , setRedirect ] = useState("tr");
     const dispatch = useDispatch();
-    const createUserAction = (email ,password) => dispatch(createUser(email, password));
+    const createUserAction = (email ,password ,firstname ,lastname) => dispatch(createUser(email, password, firstname, lastname));
 
 
     const register = async (e) =>{
         e.preventDefault();
       //  console.log("user created");
-        if(email !== "" && password !== ""){
-            await createUserAction(email, password);
+        if(email !== "" && password !== "" && firstname !== "" && lastname !== ""){
+            await createUserAction(email, password, firstname,lastname);
              // 
         }else{
             console.log("need to fill the credenttials");;
@@ -67,11 +69,15 @@ const RegisterForm = () => {
             <StyledWrapper>
             <form onSubmit={register}>
                 <div className="box">
-                <h2>ห้องสมุดโรงเรียนดรุณศาสน์วิทยา</h2>
-                <h3>ลงทะเบียน</h3>
-                <label htmlFor="email">Email:</label>
+                <h3>ห้องสมุดโรงเรียนดรุณศาสน์วิทยา</h3>
+                <p>ลงทะเบียน</p>
+                <p>Firstname:</p>
+                <input className="input" type="firstname" name="firstname" onChange={(e) => setfirstName(e.target.value)} />
+                <p>Lastname:</p>
+                <input className="input" type="lastname" name="lastname" onChange={(e) => setlastName(e.target.value)} />
+                <p>Email:</p>
                 <input className="input" type="email" name="email" onChange={(e) => setEmail(e.target.value)} />
-                <label htmlFor="Password">password:</label>
+                <p>password:</p>
                 <input className="input" type="password" name="password" onChange={(e) => setPassword(e.target.value)} />
                 <input className="input" type="submit" value="create account"/>
                 </div>

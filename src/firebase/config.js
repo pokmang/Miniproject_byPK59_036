@@ -46,6 +46,32 @@ class Firebase {
             this.auth.onAuthStateChanged(resolve);
         })
     }
+
+    async Addbook(add){
+        const storageRef = firebase.storage().ref();
+        // create a child inside the storage
+        const storageChild = storageRef.child(add.cover.name);
+        const addCover =  await storageChild.put(add.cover);
+        const downloadURL = await storageChild.getDownloadURL();
+        const fileRef = addCover.ref.location.path;
+        
+ 
+        let newbook = {
+            title: add.title,
+            content: add.content,
+            cover: downloadURL,
+            fileref : fileRef 
+        } 
+ 
+        
+        const firestoreadd = await firebase.firestore().collection("adds").add(newbook).catch(err => {
+            console.log(err);
+        });
+        
+        return firestoreadd;
+    }
+
+
   
 }
 

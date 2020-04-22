@@ -36,15 +36,20 @@ const Nav = (props) =>{
          <React.Fragment>
              <li><Link to="/register">register</Link></li>
              <li><Link to="/login">login</Link></li>
+             <li><Link to="/addbook">addbook</Link></li>
          </React.Fragment>
      )   
 
     }
 
     return(
+        <ul>
+
+       
         <nav>
             {buttons}     
         </nav>
+        </ul>
     )
 
 }
