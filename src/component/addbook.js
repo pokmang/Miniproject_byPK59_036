@@ -46,17 +46,17 @@ const Create = () =>{
         </div>
     }else{
         form = <form onSubmit={addPost}>
-        <p>Create a new post</p>
+        <p>เพิ่มหนังสื่อใหม่</p>
             
             <label htmlFor="title">Post Title: </label>
             <input type="text" name="title" onChange={(e) => setTitle(e.target.value)} />
-            
+            <br/>
             <label htmlFor="content">Post Content: </label>
             <textarea name="content"  onChange={(e) => setContent(e.target.value)}  ></textarea>
-           
+            <br/>
             <label htmlFor="cover" className="cover">Cover</label>
             <input type="file" onChange={(e) => setCover(e.target.files)} />
-
+            <br/>
             <input type="submit" value="create post" />
 
 

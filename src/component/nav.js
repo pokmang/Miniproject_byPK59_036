@@ -28,28 +28,21 @@ const Nav = (props) =>{
     if((loginSelector.user & loginSelector.user.hasOwnProperty("user")) || (registerSelector.user&&registerSelector.user.hasOwnProperty("user")) || userState != null){
         buttons =(
             <React.Fragment>
-                <li><button className="logout" onClick={logout}>Logout</button></li>
+                 <a class="navbar-brand" ><Link to="/booklist">รายการหนังสือ</Link></a>
+                 <a class="navbar-brand" ><Link to="/addbook">เพิ่มหนังสือ</Link></a>
+                 <a><button className="logout" onClick={logout}>ออกจากระบบ</button></a>
             </React.Fragment>
         )
     }else{
-     buttons =(
-         <React.Fragment>
-             <li><Link to="/register">register</Link></li>
-             <li><Link to="/login">login</Link></li>
-             <li><Link to="/addbook">addbook</Link></li>
-         </React.Fragment>
-     )   
-
+    
     }
 
     return(
-        <ul>
-
-       
-        <nav>
-            {buttons}     
-        </nav>
-        </ul>
+        <div>
+            {buttons}  
+        </div>
+               
+    
     )
 
 }

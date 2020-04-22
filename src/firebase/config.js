@@ -47,7 +47,24 @@ class Firebase {
         })
     }
 
-    async Addbook(add){
+    async getPosts(){
+        let postsArray = [];
+        const posts = await firebase.firestore().collection("posts").get();
+        posts.forEach(doc =>{
+            postsArray.push({id: doc.id ,data: doc.data()});
+        })
+        return postsArray;
+    }
+
+    async getPost(postid){
+        const post = await firebase.firestore().collection("posts").doc(postid).get();
+        const postData = post.data(); 
+        return postData;
+    }
+
+
+
+    async createPost(add){
         const storageRef = firebase.storage().ref();
         // create a child inside the storage
         const storageChild = storageRef.child(add.cover.name);

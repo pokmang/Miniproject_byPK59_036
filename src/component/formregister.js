@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 // import {Redirect} from "react-router-dom" ;
 import { useDispatch, useSelector } from 'react-redux' ;
-
+import { Link, withRouter } from "react-router-dom" ;
 
 import { createUser } from "../actions/register"
 import styled from "styled-components"
@@ -20,16 +20,18 @@ const StyledWrapper = styled.div`
         justify-content: center;
         width: 100vw;
         height: 100vh;
-        padding-top: 200px;
+        padding-top: 240px;
+        padding-left: 10px;
+        
 
       }
     .input{
-        margin-left: 600px;
-        padding-left: 5px;
+        margin-left: 700px;
+        padding-left: 10px;
         width: 200px;
         height: 30px;
         border-radius: 10px;
-        margin-top: 10px;
+        margin-top: 4px;
     }
 
 `
@@ -80,7 +82,9 @@ const RegisterForm = () => {
                 <p>password:</p>
                 <input className="input" type="password" name="password" onChange={(e) => setPassword(e.target.value)} />
                 <input className="input" type="submit" value="create account"/>
+                <spen><Link to="/login">login</Link></spen>
                 </div>
+                
                 
             </form>
             </StyledWrapper>

@@ -1,5 +1,5 @@
 import React , {useState} from "react";
-
+import { Link, withRouter } from "react-router-dom" ;
 import { useDispatch } from "react-redux";
 import { loginUser } from "../actions/login";
 import {Redirect} from "react-router-dom";
@@ -83,6 +83,7 @@ const LoginFrom = () => {
                 <input className="input" type="password" name="password" placeholder="Enter Password" onChange={(e) => setPassword(e.target.value)} />
                 <br/>
                 <input className="input" type="submit" value="Login"/>
+                <Link to="/register">register</Link>
                 </div>
             </form>
             </StyledWrapper>

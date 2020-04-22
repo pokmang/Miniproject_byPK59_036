@@ -12,9 +12,9 @@ function App() {
   return (
     <Provider store ={store} >
       <div className="App">
-     
-      <Routes/>
       <Nav/>
+      <Routes/>
+      
       </div>
     </Provider>
   );

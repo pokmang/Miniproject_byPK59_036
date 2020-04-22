@@ -3,6 +3,7 @@ import createUser from "./login";
 import loginUser from "./login";
 import logoutUser from "./logout";
 import addBook from "./addbook";
+import getPosts from "./getPosts"
 
 
 const reducers = combineReducers({
@@ -10,6 +11,7 @@ const reducers = combineReducers({
         logIn: loginUser,
         logOut: logoutUser,
         addBook: addBook,
+        post : getPosts
 });
 
 export default reducers;
