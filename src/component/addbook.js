@@ -2,12 +2,53 @@ import React ,{useState}  from "react";
 import { Redirect } from 'react-router';
 import { useDispatch } from "react-redux";
 import { createPost } from "../actions/create";
+import styled from "styled-components";
+
+const StyledWrapper = styled.div`
+
+    .addform{
+        border: 1px solid red;
+        border-radius: 8px;
+        
+        height: 500px;
+        width: 400px;
+        margin: 40px;
+    }
+    margin: 30px 1100px 0px 0px;
+    
+    .text{
+        margin: 40px 1100px 0px 20px;
+        font-size: 25px;
+    }
+
+    .text1{
+  border-radius: 8px;
+  margin-top: 40px;-
+  border: 2px solid #00ff11;
+  height: 40px;
+  width: 90px;
+  margin : 13px;
+  font-size: 18px;
+  color: #fff;
+  background-color : #00ff11;
+  cursor: pointer;
+  &:hover{
+      color: #00ff11;
+      background-color: #fff;
+      
+  }}
+  
+
+  
+`
+
 
 
 const Create = () =>{
 
-    const [title, setTitle] = useState("");
-    const [content, setContent] = useState("");
+    const [code, setcode] = useState("");
+    const [namebook, setnamebook] = useState("");
+    const [group, setgroup] = useState("");
     const [cover, setCover] = useState("");
 
     const [routeRedirect, setRedirect] = useState("");   
@@ -21,8 +62,9 @@ const Create = () =>{
         e.preventDefault();
         setLoading(true);
         let post = {
-            title,
-            content, 
+            code,
+            namebook, 
+            group,
             cover: cover[0]
         }
 
@@ -46,27 +88,34 @@ const Create = () =>{
         </div>
     }else{
         form = <form onSubmit={addPost}>
-        <p>เพิ่มหนังสื่อใหม่</p>
             
-            <label htmlFor="title">Post Title: </label>
-            <input type="text" name="title" onChange={(e) => setTitle(e.target.value)} />
-            <br/>
-            <label htmlFor="content">Post Content: </label>
-            <textarea name="content"  onChange={(e) => setContent(e.target.value)}  ></textarea>
-            <br/>
-            <label htmlFor="cover" className="cover">Cover</label>
+            <label className="text" htmlFor="title">รหัส: </label>
+            <input type="number" onChange={(e) => setcode(e.target.value)} />
+          
+            <label className="text" htmlFor="content">ชื่อ: </label>
+            <input type="text" onChange={(e) => setnamebook(e.target.value)}  ></input>
+           
+            <label className="text" htmlFor="content">หมวด: </label>
+            <input type="text" onChange={(e) => setgroup(e.target.value)}  ></input>
+           
+            <label className="text" htmlFor="cover" >รูป</label>
             <input type="file" onChange={(e) => setCover(e.target.files)} />
             <br/>
-            <input type="submit" value="create post" />
+            <input className="text1" type="submit" value="เพิ่มหนังสือ" />
 
 
 
         </form>
     }
     return(
-        <React.Fragment>
-            {form}
-        </React.Fragment>
+        <StyledWrapper>
+            <h1>เพิ่มหนังสือใหม่</h1>
+            <div className="addform">
+                  {form}
+            </div>
+        </StyledWrapper>
+           
+        
     )
 }
 

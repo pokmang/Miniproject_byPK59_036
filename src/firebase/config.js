@@ -23,7 +23,7 @@ class Firebase {
     }
 
     async login(email, password){
-        const user = await firebase.auth().signInWithEmailAndPassword(email, password).catch(err => {
+        const user = await firebase.auth().signInWithEmailAndPassword(email, password,).catch(err => {
         console.log(err);
         });
         return user;
@@ -49,7 +49,8 @@ class Firebase {
 
     async getPosts(){
         let postsArray = [];
-        const posts = await firebase.firestore().collection("posts").get();
+        const posts = await firebase.firestore().collection("adds").get();
+        
         posts.forEach(doc =>{
             postsArray.push({id: doc.id ,data: doc.data()});
         })
@@ -57,7 +58,7 @@ class Firebase {
     }
 
     async getPost(postid){
-        const post = await firebase.firestore().collection("posts").doc(postid).get();
+        const post = await firebase.firestore().collection("adds").doc(postid).get();
         const postData = post.data(); 
         return postData;
     }
@@ -74,8 +75,9 @@ class Firebase {
         
  
         let newbook = {
-            title: add.title,
-            content: add.content,
+            code: add.code ,
+            namebook: add.namebook,
+            group: add.group,
             cover: downloadURL,
             fileref : fileRef 
         } 

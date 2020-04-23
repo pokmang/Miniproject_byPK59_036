@@ -3,6 +3,21 @@ import { Link, withRouter } from "react-router-dom" ;
 import { useDispatch , useSelector} from "react-redux" ;
 import { logoutUser } from "../actions/logout";
 import firebase from "../firebase/config";
+import styled from "styled-components"
+
+const StyledWrapper = styled.div`
+
+    background-color: #DCBD60;
+    height: 65px;
+    .text{
+        padding-right: 700px;
+        font-size: 35px;
+
+    }
+   
+
+
+`
 
 const Nav = (props) =>{
 
@@ -28,9 +43,9 @@ const Nav = (props) =>{
     if((loginSelector.user & loginSelector.user.hasOwnProperty("user")) || (registerSelector.user&&registerSelector.user.hasOwnProperty("user")) || userState != null){
         buttons =(
             <React.Fragment>
-                 <a class="navbar-brand" ><Link to="/booklist">รายการหนังสือ</Link></a>
-                 <a class="navbar-brand" ><Link to="/addbook">เพิ่มหนังสือ</Link></a>
-                 <a><button className="logout" onClick={logout}>ออกจากระบบ</button></a>
+                 <a className="navbar-brand" ><Link to="/booklist">รายการหนังสือ</Link></a>
+                 <a className="navbar-brand" ><Link to="/addbook">เพิ่มหนังสือ</Link></a>
+                 <a className="navbar-brand" ><button onClick={logout}>ออกจากระบบ</button></a>
             </React.Fragment>
         )
     }else{
@@ -38,9 +53,18 @@ const Nav = (props) =>{
     }
 
     return(
-        <div>
-            {buttons}  
-        </div>
+        <StyledWrapper>
+            
+                 <spen className="text">
+                     ห้องสมุดโรงเรียนดรุณศาสน์วิทยา
+                </spen>
+                   {buttons}   
+             
+               
+                
+         
+        </StyledWrapper>
+
                
     
     )
