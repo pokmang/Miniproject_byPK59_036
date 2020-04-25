@@ -37,32 +37,30 @@ const Nav = (props) =>{
         console.log("logout user");
         setUserState(null);
         await logoutUserAction();
+        localStorage.clear()
+
+        props.history.push("/")
     }
 
     let buttons;
     if((loginSelector.user & loginSelector.user.hasOwnProperty("user")) || (registerSelector.user&&registerSelector.user.hasOwnProperty("user")) || userState != null){
         buttons =(
-            <React.Fragment>
+            <React.Fragment> 
+                <spen className="text">
+                     ห้องสมุดโรงเรียนดรุณศาสน์วิทยา
+                </spen>
                  <a className="navbar-brand" ><Link to="/booklist">รายการหนังสือ</Link></a>
-                 <a className="navbar-brand" ><Link to="/addbook">เพิ่มหนังสือ</Link></a>
+                 <a className="navbar-brand" ><Link to="/addbook">บริหารจัดการหนังสือ</Link></a>
                  <a className="navbar-brand" ><button onClick={logout}>ออกจากระบบ</button></a>
             </React.Fragment>
         )
     }else{
-    
+        
     }
 
     return(
-        <StyledWrapper>
-            
-                 <spen className="text">
-                     ห้องสมุดโรงเรียนดรุณศาสน์วิทยา
-                </spen>
-                   {buttons}   
-             
-               
-                
-         
+        <StyledWrapper>    
+             {buttons}   
         </StyledWrapper>
 
                

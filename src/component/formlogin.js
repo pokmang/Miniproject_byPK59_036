@@ -1,4 +1,4 @@
-import React , {useState} from "react";
+import React , {useState ,useEffect} from "react";
 import { Link, withRouter } from "react-router-dom" ;
 import { useDispatch } from "react-redux";
 import { loginUser } from "../actions/login";
@@ -36,7 +36,7 @@ const StyledWrapper = styled.div`
 
 `
 
-const LoginFrom = () => {
+const LoginFrom = (props) => {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -44,19 +44,33 @@ const LoginFrom = () => {
    
     const dispatch = useDispatch();
     const logInUserAction = (email, password) => dispatch(loginUser(email, password));
-
-
+    useEffect(()=>{
+        checkLogin()
+    },[])
+    const checkLogin = ()=>{
+        let email = localStorage.getItem('email')
+        if(email==null) props.history.push('/')
+        else props.history.push('/booklist')
+    }
     const login = async(e) => {
         e.preventDefault()
         
         if(email !== "" && password !== ""){
+            
             console.log("login user in");
             let user = await logInUserAction(email, password);
             if (user){
               setRedirect(true);
+              console.log(user);
+              localStorage.setItem("email",email)
+              alert('Login Success')
+            }
+            else{
+                alert('Not found user')
             }
             
         }else{
+            alert('input your user')
             console.log("need to fill the credentials")
         }
         
@@ -64,7 +78,7 @@ const LoginFrom = () => {
 
     const redirectTo = redirect;
     if(redirect){
-        return <Redirect to="/" />  
+        return <Redirect to="/booklist" />  
     }
 
 

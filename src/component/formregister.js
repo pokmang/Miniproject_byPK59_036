@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 // import {Redirect} from "react-router-dom" ;
 import { useDispatch, useSelector } from 'react-redux' ;
 import { Link, withRouter } from "react-router-dom" ;
@@ -36,7 +36,7 @@ const StyledWrapper = styled.div`
 
 `
 
-const RegisterForm = () => {
+const RegisterForm = (props) => {
 
     const [firstname, setfirstName] = useState("");
     const [lastname, setlastName] = useState("");
@@ -47,24 +47,27 @@ const RegisterForm = () => {
     const dispatch = useDispatch();
     const createUserAction = (email ,password ,firstname ,lastname) => dispatch(createUser(email, password, firstname, lastname));
 
-
+    useEffect(()=>{
+        checkLogin()
+    },[])
+    const checkLogin = ()=>{
+        let email = localStorage.getItem('email')
+        if(email==null) props.history.push('/register')
+        else props.history.push('/booklist')
+    }
     const register = async (e) =>{
         e.preventDefault();
-      //  console.log("user created");
+
         if(email !== "" && password !== "" && firstname !== "" && lastname !== ""){
             await createUserAction(email, password, firstname,lastname);
-             // 
+            alert('Register Success')
         }else{
             console.log("need to fill the credenttials");;
             
         }
     }
 
-    // const redirectTo = routeRedirect;
-    // if(redirectTo){
-    //     return <Redirect to= "/" />
-    // }
-    
+
 
     return (
         <React.Fragment>
@@ -82,7 +85,7 @@ const RegisterForm = () => {
                 <p>password:</p>
                 <input className="input" type="password" name="password" onChange={(e) => setPassword(e.target.value)} />
                 <input className="input" type="submit" value="create account"/>
-                <spen><Link to="/login">login</Link></spen>
+                <spen><Link to="/">login</Link></spen>
                 </div>
                 
                 

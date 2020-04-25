@@ -4,6 +4,7 @@ import loginUser from "./login";
 import logoutUser from "./logout";
 import addBook from "./addbook";
 import getPosts from "./getPosts"
+import deletePost from "./deletePost";
 
 
 const reducers = combineReducers({
@@ -11,7 +12,8 @@ const reducers = combineReducers({
         logIn: loginUser,
         logOut: logoutUser,
         addBook: addBook,
-        post : getPosts
+        post : getPosts,
+        delete: deletePost,
 });
 
 export default reducers;

@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import store from "./store/store" ;
 // import LoginFrom from './component/formlogin';
 import Routes from './routes';
+import LoginFrom from './component/formlogin';
 
 
 
@@ -12,8 +13,8 @@ function App() {
   return (
     <Provider store ={store} >
       <div className="App">
-      <Nav/>
-      <Routes/>
+
+        <Routes/>
       
       </div>
     </Provider>

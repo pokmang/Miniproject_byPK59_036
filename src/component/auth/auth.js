@@ -26,7 +26,7 @@ const Auth = (Component) => {
             if((Object.keys(this.props.loggedIn).length === 0) && (Object.keys(this.props.signedIn).length === 0) && (Object.keys(userStatus).length === 0)){
                 console.log("user is not set");
                 console.log(userStatus)
-                this.props.history.push('/login');
+                this.props.history.push('/');
             }
 
            

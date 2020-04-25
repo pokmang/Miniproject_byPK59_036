@@ -89,9 +89,26 @@ class Firebase {
         
         return firestoreadd;
     }
+    
+   
+      async deletePost(postid){
+        // const storageRef = firebase.storage().ref();
+        // await storageRef.child(fileref).delete().catch(err => {
+        //  console.log(err)
+        //  }); 
+        
+        // console.log("Image deleted successfully");
+        const post = await firebase.firestore().collection("adds").doc(postid).delete().catch(err => console.log(err));
+ 
+        console.log("post deleted successfully");
+        return post;
+    }
 
-
-  
+    async getUserState(){
+        return new Promise(resolve=>{
+            this.auth.onAuthStateChanged(resolve)
+        });
+    }
 }
 
 export default new Firebase();

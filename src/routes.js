@@ -10,7 +10,7 @@ import Booklist from "./component/booklist"
 
 const Routes = () =>(
     <Switch>
-        <Route exact path="/login" component= {LoginFrom} />
+        <Route exact path="/" component= {LoginFrom} />
         <Route exact path="/register" component= {RegisterForm} />
         <Route exact path="/addbook" component= {Addbooks} />
         <Route exact path="/booklist" component= {Booklist} />
