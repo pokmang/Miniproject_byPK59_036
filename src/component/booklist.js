@@ -22,11 +22,12 @@ const Booklist = (props) => {
 
 
   useEffect(() => {
+    checkLogin()
     getPostsAction();
   }, [])
   const checkLogin = () => {
     let email = localStorage.getItem('email')
-    if (email == null) props.history.push('/login')
+    if (email == null) props.history.push('/')
     else props.history.push('/booklist')
   }
   return (

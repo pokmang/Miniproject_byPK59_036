@@ -3,9 +3,6 @@ import { Redirect } from 'react-router';
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { createPost } from "../actions/create";
-import { deletePost } from "../actions/deletePost";
-import { Modal, Button } from 'antd';
-import { List, Avatar } from 'antd';
 import styled from "styled-components";
 import { getPosts } from "../actions/getPosts";
 

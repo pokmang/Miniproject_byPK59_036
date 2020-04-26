@@ -57,8 +57,6 @@ class Firebase {
         return postsArray;
     }
 
-
-
     async createPost(add){
         const storageRef = firebase.storage().ref();
         // create a child inside the storage
@@ -85,12 +83,6 @@ class Firebase {
     }
     
    
-     
-    async getUserState(){
-        return new Promise(resolve=>{
-            this.auth.onAuthStateChanged(resolve)
-        });
-    }
 }
 
 export default new Firebase();

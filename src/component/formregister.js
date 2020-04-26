@@ -86,8 +86,10 @@ const RegisterForm = (props) => {
                 <input className="input" type="lastname" name="lastname" onChange={(e) => setlastName(e.target.value)} />
                 <p>Email:</p>
                 <input className="input" type="email" name="email" onChange={(e) => setEmail(e.target.value)} />
+                <small id="emailHelp" class="form-text text-muted">emai@darun.ac.th</small>
                 <p>password:</p>
                 <input className="input" type="password" name="password" onChange={(e) => setPassword(e.target.value)} />
+                <small id="emailHelp" class="form-text text-muted">รหัสผ่านต้องมีตัวอักษรและตัวเลข เช่น abc123</small>
                <div className="bnt" >
                     <button type="submit" class="btn btn-primary">create account</button>
                 <Link to="/">login</Link>
