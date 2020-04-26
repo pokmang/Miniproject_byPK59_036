@@ -4,7 +4,7 @@ export const createUser = (email, password,firstname ,lastname) => {
  
     return async function(dispatch){
       
-        const user = await firebase.signin(email, password,firstname ,lastname);
+        const user = await firebase.register(email, password,firstname ,lastname);
         console.log(user);
         dispatch({type: "CREATE_USER", payload: user});
       

@@ -7,33 +7,19 @@ import styled from "styled-components"
 
 const StyledWrapper = styled.div`
 
-    background: #006699 url('https://i.imgur.com/zceQljC.jpg') no-repeat;
-    -webkit-background-size: cover;
+ 
+    background-image: url('https://i.imgur.com/zceQljC.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
     background-size: cover;
     width: 100vw;
     height: 100vh;
+
+    .form{
+        padding: 220px 420px 0px 420px;
+    }
+ 
     
-        .box{
-            display: flex;
-            flex-direction: column;
-            align-item :center ;
-            justify-content: center;
-            width: 100vw;
-            height: 100vh;
-            padding-top: 200px;
-
-          }
-        .input{
-            margin-left: 700px;
-            padding-left: 5px;
-            width: 200px;
-            height: 30px;
-            border-radius: 10px;
-
-        }
-
-    
-
 `
 
 const LoginFrom = (props) => {
@@ -86,20 +72,27 @@ const LoginFrom = (props) => {
     return(
         <React.Fragment>
             <StyledWrapper>
-            <form  onSubmit={login}>
 
-                <div className="box">
-                <h3 className ="text-tile">ระบบจัดการห้องสมุด</h3>
-                <label for="uname"><b>Email</b></label>
-                <input  className="input" type="email" name="email" placeholder="Enter Email" onChange={(e) => setEmail(e.target.value)} />
-                <br/>
-                <label for="psw"><b>Password</b></label>
-                <input className="input" type="password" name="password" placeholder="Enter Password" onChange={(e) => setPassword(e.target.value)} />
-                <br/>
-                <input className="input" type="submit" value="Login"/>
-                <Link to="/register">register</Link>
+            <div class="container">
+            <form  onSubmit={login} className="form">
+          
+            <h3 className ="text-tile">ระบบจัดการห้องสมุด</h3>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email@darun.ac.th" onChange={(e) => setEmail(e.target.value)} />
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                 </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" onChange={(e) => setPassword(e.target.value)}/>
+                </div>
+                <button type="submit" class="btn btn-primary">Login</button>
+                <Link to="/register">register</Link>
+              
+           
             </form>
+            </div>
+            
             </StyledWrapper>
         </React.Fragment>
     )

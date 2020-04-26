@@ -73,7 +73,7 @@ const Create = (props) => {
     const [routeRedirect, setRedirect] = useState("");
     const [loading, setLoading] = useState(false);
     const [visible, setVisible] = useState(false)
-
+    
 
     const getPostsAction = () => dispatch(getPosts());
     
@@ -87,50 +87,50 @@ const Create = (props) => {
         if(email==null) props.history.push('/')
         else props.history.push('/addbook')
     }
-    const showModal = () => {
-        setVisible(true)
-    };
+    // const showModal = () => {
+    //     setVisible(true)
+    // };
 
-    const handleOk = e => {
-        console.log(e);
-        setVisible(false)
-    };
+    // const handleOk = e => {
+    //     console.log(e);
+    //     setVisible(false)
+    // };
 
-    const handleCancel = e => {
-        console.log(e);
-        setVisible(false)
-    };
+    // const handleCancel = e => {
+    //     console.log(e);
+    //     setVisible(false)
+    // };
     const dispatch = useDispatch();
     const createPostAction = (post) => dispatch(createPost(post));
 
-    const deletePost = () => {
+    // const deletePost = () => {
 
-    }
-    const renderListBook = () => {
-        console.log(getPostsSelector.posts);
+    // }
+    // const renderListBook = () => {
+    //     console.log(getPostsSelector.posts);
         
-        return (
+    //     return (
 
-            <List
-                itemLayout="horizontal"
-                dataSource={getPostsSelector.posts}
-                renderItem={item => (
-                    <List.Item
-                    key={item.id}
-                    extra={
-                        <Button type="primary" danger onClick={()=>deletePost(item.id)}>ลบหนังสือนี้</Button>
-                      }
-                      >
-                        <List.Item.Meta
-                            avatar={<Avatar src={item.data.cover} />}
-                            title={item.data.namebook}
-                            description={<>รหัสหนังสือ : {item.data.code} , หมวดหมู่ : {item.data.group}</>}
-                        />
-                    </List.Item>
-                )}
-            />
-        )
-    }
+    //         <List
+    //             itemLayout="horizontal"
+    //             dataSource={getPostsSelector.posts}
+    //             renderItem={item => (
+    //                 <List.Item
+    //                 key={item.id}
+    //                 extra={
+    //                     <Button type="primary" danger onClick={()=>deletePost(item.id)}>ลบหนังสือนี้</Button>
+    //                   }
+    //                   >
+    //                     <List.Item.Meta
+    //                         avatar={<Avatar src={item.data.cover} />}
+    //                         title={item.data.namebook}
+    //                         description={<>รหัสหนังสือ : {item.data.code} , หมวดหมู่ : {item.data.group}</>}
+    //                     />
+    //                 </List.Item>
+    //             )}
+    //         />
+    //     )
+    // }
     const addPost = async (e) => {
         e.preventDefault();
         setLoading(true);
@@ -186,22 +186,22 @@ const Create = (props) => {
     return (
         <StyledWrapper>
             <Nav />
-            <Modal
+            {/* <Modal
                 title="ลบหนังสือ"
                 visible={visible}
                 onOk={handleOk}
                 onCancel={handleCancel}
             >
                 {renderListBook()}
-            </Modal>
-            <h1>เพิ่ม/ลบหนังสือ</h1>
+            </Modal> */}
+            <h1>เพิ่มหนังสือ</h1>
             <div className="form-addbook">
 
                 <div>
                     {form}
                 </div>
                 <div >
-                    <button onClick={showModal} >ลบหนังสือ</button>
+                    {/* <button onClick={showModal} >ลบหนังสือ</button> */}
                 </div>
             </div>
 

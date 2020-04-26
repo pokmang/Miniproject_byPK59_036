@@ -7,12 +7,13 @@ import { createUser } from "../actions/register"
 import styled from "styled-components"
 
 const StyledWrapper = styled.div`
+@media only screen and (min-width: 769px) {
 
-    background: #006699 url('https://i.imgur.com/zceQljC.jpg') no-repeat;
-    -webkit-background-size: cover;
+    background-image: url('https://i.imgur.com/zceQljC.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
     background-size: cover;
-    width: 100vw;
-    height: 100vh;
+
     .box{
         display: flex;
         flex-direction: column;
@@ -20,19 +21,22 @@ const StyledWrapper = styled.div`
         justify-content: center;
         width: 100vw;
         height: 100vh;
-        padding-top: 240px;
+        padding-top: 200px;
         padding-left: 10px;
         
 
       }
+
     .input{
-        margin-left: 700px;
-        padding-left: 10px;
-        width: 200px;
-        height: 30px;
-        border-radius: 10px;
-        margin-top: 4px;
+       margin: 0px 550px 0px 550px;
     }
+  }
+  .bnt{
+    margin: 10px 550px 0px 550px;
+  }
+
+
+
 
 `
 
@@ -43,9 +47,8 @@ const RegisterForm = (props) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     
-    // const [routeRedirect , setRedirect ] = useState("tr");
     const dispatch = useDispatch();
-    const createUserAction = (email ,password ,firstname ,lastname) => dispatch(createUser(email, password, firstname, lastname));
+    const createUserAction = (email ,password ,firstname ,lastname) => dispatch(createUser(email, password, firstname, firstname));
 
     useEffect(()=>{
         checkLogin()
@@ -61,6 +64,7 @@ const RegisterForm = (props) => {
         if(email !== "" && password !== "" && firstname !== "" && lastname !== ""){
             await createUserAction(email, password, firstname,lastname);
             alert('Register Success')
+            props.history.push('/')
         }else{
             console.log("need to fill the credenttials");;
             
@@ -74,8 +78,8 @@ const RegisterForm = (props) => {
             <StyledWrapper>
             <form onSubmit={register}>
                 <div className="box">
-                <h3>ห้องสมุดโรงเรียนดรุณศาสน์วิทยา</h3>
-                <p>ลงทะเบียน</p>
+                <h4>ห้องสมุดโรงเรียนดรุณศาสน์วิทยา</h4>
+                <h6>ลงทะเบียน</h6>
                 <p>Firstname:</p>
                 <input className="input" type="firstname" name="firstname" onChange={(e) => setfirstName(e.target.value)} />
                 <p>Lastname:</p>
@@ -84,12 +88,17 @@ const RegisterForm = (props) => {
                 <input className="input" type="email" name="email" onChange={(e) => setEmail(e.target.value)} />
                 <p>password:</p>
                 <input className="input" type="password" name="password" onChange={(e) => setPassword(e.target.value)} />
-                <input className="input" type="submit" value="create account"/>
-                <spen><Link to="/">login</Link></spen>
+               <div className="bnt" >
+                    <button type="submit" class="btn btn-primary">create account</button>
+                <Link to="/">login</Link>
+               </div>
+               
+              
                 </div>
                 
-                
-            </form>
+           
+                    </form>
+        
             </StyledWrapper>
         </React.Fragment>
     )

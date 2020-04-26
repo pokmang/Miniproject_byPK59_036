@@ -29,8 +29,8 @@ class Firebase {
         return user;
     }
 
-    async signin(email, password){
-        const user = await firebase.auth().createUserWithEmailAndPassword(email, password).catch(err => {
+    async register(email ,password ){
+        const user = await firebase.auth().createUserWithEmailAndPassword(email ,password).catch(err => {
             console.log(err);
         });
         return user;
@@ -55,12 +55,6 @@ class Firebase {
             postsArray.push({id: doc.id ,data: doc.data()});
         })
         return postsArray;
-    }
-
-    async getPost(postid){
-        const post = await firebase.firestore().collection("adds").doc(postid).get();
-        const postData = post.data(); 
-        return postData;
     }
 
 
@@ -91,19 +85,7 @@ class Firebase {
     }
     
    
-      async deletePost(postid){
-        // const storageRef = firebase.storage().ref();
-        // await storageRef.child(fileref).delete().catch(err => {
-        //  console.log(err)
-        //  }); 
-        
-        // console.log("Image deleted successfully");
-        const post = await firebase.firestore().collection("adds").doc(postid).delete().catch(err => console.log(err));
- 
-        console.log("post deleted successfully");
-        return post;
-    }
-
+     
     async getUserState(){
         return new Promise(resolve=>{
             this.auth.onAuthStateChanged(resolve)
