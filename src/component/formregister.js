@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux' ;
 import { Link, withRouter } from "react-router-dom" ;
 
-import { createUser } from "../actions/register"
+import { createUser } from "../redux/actions/register"
 import styled from "styled-components"
 
 const StyledWrapper = styled.div`
@@ -48,7 +48,7 @@ const RegisterForm = (props) => {
     const [password, setPassword] = useState("");
     
     const dispatch = useDispatch();
-    const createUserAction = (email ,password ,firstname ,lastname) => dispatch(createUser(email, password, firstname, firstname));
+    const createUserAction = (email ,password ,firstname ,lastname) => dispatch(createUser(email, password, firstname, lastname));
 
     useEffect(()=>{
         checkLogin()

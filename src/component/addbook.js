@@ -2,9 +2,9 @@ import React, { useState ,useEffect} from "react";
 import { Redirect } from 'react-router';
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { createPost } from "../actions/create";
+import { createPost } from "../redux/actions/create";
 import styled from "styled-components";
-import { getPosts } from "../actions/getPosts";
+import { getPosts } from "../redux/actions/getPosts";
 
 import Nav from "./nav";
 const StyledWrapper = styled.div`

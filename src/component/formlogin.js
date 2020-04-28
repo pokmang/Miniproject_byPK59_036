@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { loginUser } from "../actions/login";
+import { loginUser } from "../redux/actions/login";
 import { Redirect } from "react-router-dom";
 import styled from "styled-components"
 
@@ -12,8 +12,11 @@ const StyledWrapper = styled.div`
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    width: 100vw;
+    max-width: 100vw;
     height: 100vh;
+    .container{
+        padding: 200px 0px 0px 0px;
+    }
 
 
     
@@ -70,7 +73,8 @@ const LoginFrom = (props) => {
         <React.Fragment>
             <StyledWrapper>
 
-                <div class="container" style={{width: '20%'}}>
+                <div class="container" style={{width: '30%'}}>
+                    
                     <div className="form">
 
                         <form onSubmit={login} >
