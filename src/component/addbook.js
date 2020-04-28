@@ -1,7 +1,6 @@
 import React, { useState ,useEffect} from "react";
 import { Redirect } from 'react-router';
 import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
 import { createPost } from "../redux/actions/create";
 import styled from "styled-components";
 import { getPosts } from "../redux/actions/getPosts";
@@ -66,10 +65,9 @@ const Create = (props) => {
     const [namebook, setnamebook] = useState("");
     const [group, setgroup] = useState("");
     const [cover, setCover] = useState("");
-    const getPostsSelector = useSelector((state) => state.post)
     const [routeRedirect, setRedirect] = useState("");
     const [loading, setLoading] = useState(false);
-    const [visible, setVisible] = useState(false)
+
     
 
     const getPostsAction = () => dispatch(getPosts());
@@ -79,55 +77,16 @@ const Create = (props) => {
         checkLogin()
       getPostsAction();
     },[])
+
     const checkLogin = ()=>{
         let email = localStorage.getItem('email')
         if(email==null) props.history.push('/')
         else props.history.push('/addbook')
     }
-    // const showModal = () => {
-    //     setVisible(true)
-    // };
 
-    // const handleOk = e => {
-    //     console.log(e);
-    //     setVisible(false)
-    // };
-
-    // const handleCancel = e => {
-    //     console.log(e);
-    //     setVisible(false)
-    // };
     const dispatch = useDispatch();
     const createPostAction = (post) => dispatch(createPost(post));
 
-    // const deletePost = () => {
-
-    // }
-    // const renderListBook = () => {
-    //     console.log(getPostsSelector.posts);
-        
-    //     return (
-
-    //         <List
-    //             itemLayout="horizontal"
-    //             dataSource={getPostsSelector.posts}
-    //             renderItem={item => (
-    //                 <List.Item
-    //                 key={item.id}
-    //                 extra={
-    //                     <Button type="primary" danger onClick={()=>deletePost(item.id)}>ลบหนังสือนี้</Button>
-    //                   }
-    //                   >
-    //                     <List.Item.Meta
-    //                         avatar={<Avatar src={item.data.cover} />}
-    //                         title={item.data.namebook}
-    //                         description={<>รหัสหนังสือ : {item.data.code} , หมวดหมู่ : {item.data.group}</>}
-    //                     />
-    //                 </List.Item>
-    //             )}
-    //         />
-    //     )
-    // }
     const addPost = async (e) => {
         e.preventDefault();
         setLoading(true);
@@ -137,7 +96,6 @@ const Create = (props) => {
             group,
             cover: cover[0]
         }
-
         await createPostAction(post);
         setLoading(false);
         setRedirect(true);

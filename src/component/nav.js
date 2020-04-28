@@ -47,7 +47,7 @@ const Nav = (props) =>{
         buttons =(
             <React.Fragment> 
                 <StyledWrapper>
-                <nav class="navbar navbar-dark bg-dark">
+                <nav className="navbar navbar-dark bg-dark">
                 <a className="user" >ผู้ใช้งาน:{email}</a>
                 <a className="navbar-brand" ><Link to="/booklist">รายการหนังสือ</Link></a>
                  <a className="navbar-brand" ><Link to="/addbook">บริหารจัดการหนังสือ</Link></a>

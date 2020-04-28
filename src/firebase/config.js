@@ -3,7 +3,7 @@ import "firebase/auth";
 import "firebase/firestore";
 import "firebase/storage";
 
-const config ={
+const config = {
     apiKey: "AIzaSyCLUotplu9-J9_77IZWTJtqqIxM-uqoU68",
     authDomain: "darunsat-library.firebaseapp.com",
     databaseURL: "https://darunsat-library.firebaseio.com",
@@ -15,74 +15,68 @@ const config ={
 }
 
 class Firebase {
-    constructor(){
+    constructor() {
 
         firebase.initializeApp(config);
-        this.auth=firebase.auth();
-        this.db=firebase.firestore();
+        this.auth = firebase.auth();
+        this.db = firebase.firestore();
     }
 
-    async login(email, password){
-        const user = await firebase.auth().signInWithEmailAndPassword(email, password,).catch(err => {
-        console.log(err);
-        });
-        return user;
-    }
-
-    async register(email ,password ){
-        const user = await firebase.auth().createUserWithEmailAndPassword(email ,password).catch(err => {
+    async login(email, password) {
+        const user = await firebase.auth().signInWithEmailAndPassword(email, password).catch(err => {
             console.log(err);
         });
         return user;
     }
 
-    async logout(){
+    async register(email, password) {
+        const user = await firebase.auth().createUserWithEmailAndPassword(email, password).catch(err => {
+            console.log(err);
+        });
+        return user;
+    }
+
+    async logout() {
         const logout = await firebase.auth().signOut().catch(err => console.log(err));
         return logout;
     }
 
-    async getUserState(){
-        return new Promise(resolve =>{
+    async getUserState() {
+        return new Promise(resolve => {
             this.auth.onAuthStateChanged(resolve);
         })
     }
 
-    async getPosts(){
+    async getPosts() {
         let postsArray = [];
         const posts = await firebase.firestore().collection("adds").get();
-        
-        posts.forEach(doc =>{
-            postsArray.push({id: doc.id ,data: doc.data()});
+
+        posts.forEach(doc => {
+            postsArray.push({ id: doc.id, data: doc.data() });
         })
         return postsArray;
     }
 
-    async createPost(add){
+    async createPost(add) {
         const storageRef = firebase.storage().ref();
-        // create a child inside the storage
         const storageChild = storageRef.child(add.cover.name);
-        const addCover =  await storageChild.put(add.cover);
+        const addCover = await storageChild.put(add.cover);
         const downloadURL = await storageChild.getDownloadURL();
         const fileRef = addCover.ref.location.path;
-        
- 
         let newbook = {
-            code: add.code ,
+            code: add.code,
             namebook: add.namebook,
             group: add.group,
             cover: downloadURL,
-            fileref : fileRef 
-        } 
- 
-        
+            fileref: fileRef
+        }
         const firestoreadd = await firebase.firestore().collection("adds").add(newbook).catch(err => {
             console.log(err);
         });
-        
         return firestoreadd;
     }
-    
-   
+
+
 }
 
 export default new Firebase();

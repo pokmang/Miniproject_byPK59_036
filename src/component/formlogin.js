@@ -73,8 +73,8 @@ const LoginFrom = (props) => {
         <React.Fragment>
             <StyledWrapper>
 
-                <div class="container" style={{width: '30%'}}>
-                    
+                <div class="container" style={{ width: '30%' }}>
+
                     <div className="form">
 
                         <form onSubmit={login} >
