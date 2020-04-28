@@ -31,40 +31,40 @@ const Booklist = (props) => {
     else props.history.push('/booklist')
   }
 
-  
+
   return (
     <StyledWrapper>
 
       <Nav />
-    
-      <div class="d-flex justify-content-start">
-      <div className ="row">
-     
-        {getPostsSelector.posts.map(post => {
-          return (
 
-            <div className ="card" style={{width: '20rem'}}>
-                <div className ="card-body"><img src={post.data.cover} width="200px" alt="Card image cap"/>
-                  <h5 className ="card-title">{post.data.namebook}</h5>
+      <div class="d-flex justify-content-start">
+        <div className="row">
+
+          {getPostsSelector.posts.map(post => {
+            return (
+
+              <div className="card" style={{ width: '20rem' }}>
+                <div className="card-body"><img src={post.data.cover} width="200px" alt="Card image cap" />
+                  <h5 className="card-title">{post.data.namebook}</h5>
                 </div>
-                <ul className ="list-group list-group-flush">
-                  <li className ="list-group-item">รหัส :{post.data.code}</li>
-                  <li className ="list-group-item">ชื่อ :{post.data.namebook}</li>
-                  <li className ="list-group-item">หมวด :{post.data.group}</li>
+                <ul className="list-group list-group-flush">
+                  <li className="list-group-item">รหัส :{post.data.code}</li>
+                  <li className="list-group-item">ชื่อ :{post.data.namebook}</li>
+                  <li className="list-group-item">หมวด :{post.data.group}</li>
                 </ul>
 
-            </div>
+              </div>
             )
           })}
-          </div>
-            </div> 
-           
-        
-          
-        
-    
-        </StyledWrapper>
-    )
+        </div>
+      </div>
+
+
+
+
+
+    </StyledWrapper>
+  )
 
 }
 

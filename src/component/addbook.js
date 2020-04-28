@@ -1,4 +1,4 @@
-import React, { useState ,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { Redirect } from 'react-router';
 import { useDispatch } from "react-redux";
 import { createPost } from "../redux/actions/create";
@@ -68,19 +68,19 @@ const Create = (props) => {
     const [routeRedirect, setRedirect] = useState("");
     const [loading, setLoading] = useState(false);
 
-    
+
 
     const getPostsAction = () => dispatch(getPosts());
-    
-   
+
+
     useEffect(() => {
         checkLogin()
-      getPostsAction();
-    },[])
+        getPostsAction();
+    }, [])
 
-    const checkLogin = ()=>{
+    const checkLogin = () => {
         let email = localStorage.getItem('email')
-        if(email==null) props.history.push('/')
+        if (email == null) props.history.push('/')
         else props.history.push('/addbook')
     }
 
@@ -141,23 +141,14 @@ const Create = (props) => {
     return (
         <StyledWrapper>
             <Nav />
-            {/* <Modal
-                title="ลบหนังสือ"
-                visible={visible}
-                onOk={handleOk}
-                onCancel={handleCancel}
-            >
-                {renderListBook()}
-            </Modal> */}
+ 
             <h1>เพิ่มหนังสือ</h1>
             <div className="form-addbook">
 
                 <div>
                     {form}
                 </div>
-                <div >
-                    {/* <button onClick={showModal} >ลบหนังสือ</button> */}
-                </div>
+
             </div>
 
         </StyledWrapper>
